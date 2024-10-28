@@ -12,12 +12,12 @@ import AdminRegister from './components/AdminRegister';
 import AdminLogin from './components/AdminLogin';
 import EditProfile from './components/EditProfile';
 import AdminEditProfile from './components/AdminEditProfile';
-import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute component
+// Import the ProtectedRoute component
 import RedirectAuthenticatedUser from './components/RedirectAuthenticatedUser'; // Import the RedirectAuthenticatedUser component
 import { useAuthStore } from './store/authStore'; // Assuming you have a global state for auth
 
 function App() {
-  const { isAuthenticated, loading } = useAuthStore(); // Access authentication state
+  const {loading } = useAuthStore(); // Access authentication state
 
   if (loading) return <div>Loading...</div>; // Show a loading state while checking auth
 

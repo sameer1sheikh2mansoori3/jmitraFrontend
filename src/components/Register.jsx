@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState,  useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -28,10 +28,10 @@ const Register = () => {
     try {
       const response = await axios.post(
         'https://backendattendance-b2gi.onrender.com/api/auth/register',
-        formData, // Assuming formData is already an object
+        formData, 
        
       );
-      console.log(response.data);
+      console.log(response);
 
       const data = await response.json();
 

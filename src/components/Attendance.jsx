@@ -4,9 +4,8 @@ import axios from 'axios';
 import { Edit, CheckCircle, LogOut } from 'lucide-react';
 import Confetti from 'react-confetti';
 import { motion } from 'framer-motion'; // Import Framer Motion
-import { Canvas } from '@react-three/fiber';
-import { Sphere, MeshWobbleMaterial } from '@react-three/drei'; // For a wobbling 3D effect
-import { Line } from 'react-chartjs-2'; // Import Line chart from react-chartjs-2
+
+
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
 // Register Chart.js components
@@ -75,27 +74,27 @@ const Attendance = () => {
     navigate('/login');
   };
 
-  const chartData = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    datasets: [
-      {
-        label: 'Attendance This Week',
-        data: [1, 1, 0, 1, 1], // Example attendance data
-        fill: false,
-        backgroundColor: 'rgba(99, 102, 241, 0.6)',
-        borderColor: 'rgba(99, 102, 241, 0.8)',
-      },
-    ],
-  };
+  // const chartData = {
+  //   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+  //   datasets: [
+  //     {
+  //       label: 'Attendance This Week',
+  //       data: [1, 1, 0, 1, 1], // Example attendance data
+  //       fill: false,
+  //       backgroundColor: 'rgba(99, 102, 241, 0.6)',
+  //       borderColor: 'rgba(99, 102, 241, 0.8)',
+  //     },
+  //   ],
+  // };
 
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-      },
-    },
-  };
+  // const chartOptions = {
+  //   responsive: true,
+  //   plugins: {
+  //     legend: {
+  //       display: true,
+  //     },
+  //   },
+  // };
 
   if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
 

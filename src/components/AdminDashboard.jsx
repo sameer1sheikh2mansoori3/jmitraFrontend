@@ -11,7 +11,8 @@ Modal.setAppElement('#root'); // Accessibility setting
 
 function AdminDashboard() {
   const navigate = useNavigate();
-  const [adminName, setAdminName] = useState("");
+   const [adminName, setAdminName] = useState("");
+   console.log(adminName)
   const [adminAvatar, setAdminAvatar] = useState("");
   const [totalStudents, setTotalStudents] = useState(0);
   const [todayAttendance, setTodayAttendance] = useState(0);
@@ -67,6 +68,7 @@ function AdminDashboard() {
       toast.success("User deleted successfully!");
       fetchData();
     } catch (error) {
+      console.log('error inside admindashboard' , error)
       toast.error("Failed to delete user");
       setModalIsOpen(false);
       setUserToDelete(null);
@@ -144,7 +146,7 @@ function AdminDashboard() {
           whileHover={{ scale: 1.05 }}
           className={`p-6 text-center ${isDarkMode ? 'bg-gray-800 text-gray-200' : 'bg-white text-gray-900'} rounded-lg shadow-md`}
         >
-          <h3 className="text-xl font-semibold">Today's Attendance</h3>
+          <h3 className="text-xl font-semibold">Today&apos;s Attendance</h3>
           <p className={`text-2xl font-bold ${isDarkMode ? 'text-green-300' : 'text-green-500'}`}>{todayAttendance}</p>
         </motion.div>
       </section>
