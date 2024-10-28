@@ -21,16 +21,13 @@ const ForgotPassword = () => {
         
       );
 
-      if (response.ok) {
+     
         setMessage('Reset password email sent successfully. Check your inbox!');
         setTimeout(() => {
           alert('Reset password email sent successfully!');
           navigate('/login');
         }, 500);
-      } else {
-        const errorData = await response.json();
-        setMessage(errorData.message || 'Failed to send email. Please try again.');
-      }
+     
     } catch (error) {
       // console.error('❌ Error sending email:', error);
       setMessage('An error occurred. Please try again.');

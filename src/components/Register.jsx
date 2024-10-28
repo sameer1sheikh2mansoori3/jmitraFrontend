@@ -29,14 +29,14 @@ const Register = () => {
     try {
       const response = await axios.post(
         'https://backendattendance-b2gi.onrender.com/api/auth/register',
-        formData, 
-       
+        formData
       );
-      console.log(response);
-
-      const data = await response.json();
-
-      if (response.ok) {
+    
+      console.log(response)
+      // Axios parses JSON response automatically
+      const data = response.data;
+    
+      if (response.status === 201) { // Check for successful status
         localStorage.setItem('token', data.token);
         toast.success('Registration successful!'); // Show success toast
         navigate('/attendance');
@@ -44,8 +44,9 @@ const Register = () => {
         toast.error(`Registration failed: ${data.message || 'An error occurred.'}`); // Show error toast
       }
     } catch (error) {
-      
-      toast.error('Registration failed.'); // Show error toast
+      // Improved error handling
+      const errorMessage = error.response && error.response.data ? error.response.data.message : 'An error occurred.';
+      toast.error(`Registration failed: ${errorMessage}`);
     } finally {
       setLoading(false);
     }

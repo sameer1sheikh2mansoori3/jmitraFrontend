@@ -19,27 +19,28 @@ const Login = () => {
     setLoading(true);
 
     try {
-      
       const response = await axios.post('https://backendattendance-b2gi.onrender.com/api/auth/login', {
         email,
         password,
       });
-
-      if (response.ok) {
-        const { token } = await response.json();
+    
+      if (response.status === 200) { // Check for a successful status
+        const { token } = response.data; // Access token directly from response data
         localStorage.setItem('token', token);
         toast.success('Login successful!'); // Show success toast
         navigate('/attendance'); // Navigate to attendance page
       } else {
-        const data = await response.json();
-        toast.error(`Login failed: ${data.message || 'An error occurred.'}`); // Show error toast
+        toast.error(`Login failed: ${response.data.message || 'An error occurred.'}`); // Show error toast for non-200 responses
       }
     } catch (error) {
       console.error('Login error:', error);
-      toast.error('Login failed.'); // Show error toast
+      // Improved error message
+      const errorMessage = error.response && error.response.data ? error.response.data.message : 'An error occurred.';
+      toast.error(`Login failed: ${errorMessage}`); // Show error toast with specific message
     } finally {
       setLoading(false);
     }
+    
   };
 
   const handleMouseMove = (e) => {

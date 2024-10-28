@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -6,27 +7,26 @@ const ResetPassword = () => {
   const { token } = useParams(); // Extract the token from the URL
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate(); // Hook for navigation
 
   console.log("Extracted Token:", token); // Log the extracted token
 
   const handleResetPassword = async (e) => {
     e.preventDefault(); // Prevent default form submission
+    setLoading(true); // Set loading to true at the start
     try {
       const response = await axios.post(`https://backendattendance-b2gi.onrender.com/api/auth/reset-password/${token}`, {
         password: newPassword,
       });
 
-      if (response.ok) {
-        setMessage('Password reset successful! You can now log in.');
-        setTimeout(() => navigate('/login'), 3000); // Navigate to login after 3 seconds
-      } else {
-        const data = await response.json();
-        setMessage(data.message || 'Password reset failed.'); // Improved error handling
-      }
+      setMessage('Password reset successful! You can now log in.');
+      setTimeout(() => navigate('/login'), 3000); // Navigate to login after 3 seconds
     } catch (error) {
       console.error('Error during password reset:', error);
       setMessage('An error occurred. Please try again.'); // Error message for user
+    } finally {
+      setLoading(false); // Set loading to false after request completes
     }
   };
 
@@ -42,7 +42,13 @@ const ResetPassword = () => {
           required
           className="w-full p-2 mb-2 border"
         />
-        <button type="submit" className="w-full p-2 text-white bg-blue-500">Reset Password</button>
+        <button 
+          type="submit" 
+          className="w-full p-2 text-white bg-blue-500"
+          disabled={loading} // Disable button when loading
+        >
+          {loading ? 'Resetting Password...' : 'Reset Password'}
+        </button>
         {message && <p className="mt-2 text-center">{message}</p>}
       </form>
     </div>
