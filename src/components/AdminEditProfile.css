@@ -1,0 +1,32 @@
+/* AdminEditProfile.css */
+
+/* Dark Mode Styles */
+.bg-gray-900 {
+    background-color: #1a202c; /* Dark background */
+}
+
+.text-white {
+    color: #fff; /* White text */
+}
+
+/* Light Mode Styles */
+.bg-gradient-to-b {
+    background: linear-gradient(to bottom, #ebf8ff, #f7fafc); /* Light background */
+}
+
+.text-black {
+    color: #000; /* Black text */
+}
+
+/* Animation for button */
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}

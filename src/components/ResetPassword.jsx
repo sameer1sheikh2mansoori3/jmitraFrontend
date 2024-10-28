@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -12,10 +13,8 @@ const ResetPassword = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault(); // Prevent default form submission
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/reset-password/${token}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: newPassword }),
+      const response = await axios.post(`https://backendattendance-b2gi.onrender.com/api/auth/reset-password/${token}`, {
+        password: newPassword,
       });
 
       if (response.ok) {
@@ -33,17 +32,17 @@ const ResetPassword = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <form onSubmit={handleResetPassword} className="border p-4 rounded shadow-lg w-1/3">
-        <h2 className="text-xl mb-4">Reset Password</h2>
+      <form onSubmit={handleResetPassword} className="w-1/3 p-4 border rounded shadow-lg">
+        <h2 className="mb-4 text-xl">Reset Password</h2>
         <input
           type="password"
           placeholder="New Password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
-          className="border p-2 mb-2 w-full"
+          className="w-full p-2 mb-2 border"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 w-full">Reset Password</button>
+        <button type="submit" className="w-full p-2 text-white bg-blue-500">Reset Password</button>
         {message && <p className="mt-2 text-center">{message}</p>}
       </form>
     </div>

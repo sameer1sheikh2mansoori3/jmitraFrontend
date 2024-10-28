@@ -1,0 +1,15 @@
+/* Register.css */
+.register-container {
+  perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.register-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  position: relative; /* Positioning context for the card */
+}
+
+.register-card:hover {
+  transform: translateY(10px); /* Move the card down on hover */
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2), 0 15px 10px rgba(0, 0, 0, 0.15); /* Shadow effect on hover */
+}
