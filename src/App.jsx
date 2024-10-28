@@ -16,6 +16,9 @@ import AdminEditProfile from './components/AdminEditProfile';
 import RedirectAuthenticatedUser from './components/RedirectAuthenticatedUser'; // Import the RedirectAuthenticatedUser component
 import { useAuthStore } from './store/authStore'; // Assuming you have a global state for auth
 
+import ResetAdmin from './components/ResetAdmin';
+import AdminForgot from './components/AdminForget';
+
 function App() {
   const {loading } = useAuthStore(); // Access authentication state
 
@@ -55,7 +58,24 @@ function App() {
             </RedirectAuthenticatedUser>
           }
         />
+         <Route
+          path="/admin-forget"
+          element={
+            
+            <AdminForgot />
+           
+          }
+        />
         <Route
+          path="admin-reset/reset-password/:token"
+          element={
+           
+              <ResetAdmin/>
+           
+          }
+        />
+
+<Route
           path="/admin"
           element={
            

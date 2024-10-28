@@ -76,7 +76,7 @@ const AdminLogin = () => {
           Forgot your password?{' '}
           <span 
             className="text-purple-500 cursor-pointer" 
-            onClick={() => navigate('/reset-password-sent')}
+            onClick={() => navigate('/admin-forget')}
           >
             Reset it here
           </span>

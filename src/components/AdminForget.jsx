@@ -7,7 +7,7 @@ import { Mail } from 'lucide-react';
 import './ForgotPassword.css';
 import axios from 'axios';
 
-const ForgotPassword = () => {
+const AdminForgot = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false); // Loading state to manage request in progress
@@ -21,14 +21,14 @@ const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        'https://backendattendance-b2gi.onrender.com/api/auth/forgot-password',
+        'https://backendattendance-b2gi.onrender.com/api/auth/admin/forgot-password',
         { email: email }
       );
 
       setMessage('Reset password email sent successfully. Check your inbox!');
       setTimeout(() => {
         alert('Reset password email sent successfully!');
-        navigate('/login');
+        navigate('/admin-login');
       }, 500);
     } catch (error) {
       setMessage('An error occurred. Please try again.');
@@ -93,4 +93,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default AdminForgot;
