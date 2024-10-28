@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // src/components/ForgotPassword.js
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -16,10 +17,8 @@ const ForgotPassword = () => {
     try {
       const response = await axios.post(
         'https://backendattendance-b2gi.onrender.com/api/auth/forgot-password',
-        { email }, // Data to be sent in the body
-        {
-          headers: { 'Content-Type': 'application/json' }, // Headers
-        }
+        { email : email }, // Data to be sent in the body
+        
       );
 
       if (response.ok) {
@@ -33,7 +32,7 @@ const ForgotPassword = () => {
         setMessage(errorData.message || 'Failed to send email. Please try again.');
       }
     } catch (error) {
-      console.error('❌ Error sending email:', error);
+      // console.error('❌ Error sending email:', error);
       setMessage('An error occurred. Please try again.');
     }
   };

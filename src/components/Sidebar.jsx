@@ -1,4 +1,5 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+
 
 const Sidebar = ({ user, onClose, onEdit }) => {
   return (

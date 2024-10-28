@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState,  useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -43,7 +44,7 @@ const Register = () => {
         toast.error(`Registration failed: ${data.message || 'An error occurred.'}`); // Show error toast
       }
     } catch (error) {
-      console.error('Registration error:', error);
+      
       toast.error('Registration failed.'); // Show error toast
     } finally {
       setLoading(false);

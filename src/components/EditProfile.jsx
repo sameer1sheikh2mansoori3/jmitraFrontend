@@ -5,8 +5,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Edit, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { Sphere, MeshWobbleMaterial } from '@react-three/drei';
 
 const EditProfile = () => {
   const [user, setUser] = useState({ name: '', email: '', avatar: null });
