@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 // src/components/AdminLogin.js
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock } from 'lucide-react'; // Import icons from lucide-react
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -15,26 +17,32 @@ const AdminLogin = () => {
     try {
       const response = await axios.post(
         'https://backendattendance-b2gi.onrender.com/api/auth/admin/login',
-        { email, password }, // Sending email and password directly as data
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
+        { email, password },
+        
       );
-      console.log(response.data); //
-
-      if (response.ok) {
-        const { token } = await response.json();
-        localStorage.setItem('token', token);
-
-        alert('Login successful!');
+  
+      console.log(response , 'this is pure resp'); // For debugging purposes
+  
+      const { token } = response.data; // Access token directly from the response
+  
+      // Store the token in local storage
+      localStorage.setItem('token', token);
+  
+      // Show success message
+      toast.success('Welcome back!'); // Using toastify for success message
+  
+      // Redirect to the admin dashboard after a delay
+      setTimeout(() => {
         navigate('/admin');
-      } else {
-        alert('Login failed.');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('An error occurred during login.');
+      }, 3000);
+  
     }
+     catch (error) {
+      
+      // Handle the error with toastify
+      toast.error('An error occurred during login.'); // Display error message
+    }
+  
   };
 
   return (

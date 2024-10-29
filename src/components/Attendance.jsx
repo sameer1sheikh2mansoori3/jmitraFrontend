@@ -52,20 +52,20 @@ const Attendance = () => {
           },
         }
       );
-      console.log(response.data); 
+       console.log(response)
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.data.status === 200) {
+        const data = response.data
         setAttendanceMessage(data.message || 'Attendance marked successfully!');
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 3000);
       } else {
-        const errorData = await response.json();
-        setAttendanceMessage(errorData.message || 'You are late. Attendance cannot be marked.');
+        const errorData = response.data.message
+        setAttendanceMessage(errorData || 'You are late. Attendance cannot be marked.');
       }
     } catch (error) {
-      console.error('❌ Network error:', error);
-      setAttendanceMessage('An error occurred while marking attendance.');
+      console.error('❌ Network error:', error.response);
+      setAttendanceMessage('you are late kindly contact to admin');
     }
   };
 

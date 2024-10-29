@@ -33,12 +33,12 @@ const AdminRegister = () => {
           },
         }
       );
-      console.log(response.data);
+      console.log();
       
-      const data = await response.json();
+     
   
-      if (response.ok) {
-        localStorage.setItem('token', data.token);
+      if (response?.data?.token) {
+        localStorage.setItem('token', response.data.token);
         toast.success('Admin registration successful!');
         setTimeout(() => {
           navigate('/admin');
